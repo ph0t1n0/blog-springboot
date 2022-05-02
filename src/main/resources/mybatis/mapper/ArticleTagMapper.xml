@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.example.blogspringboot.mapper.ArticleTagMapper" >
+
+    <resultMap id="ArticleTagMap" type="ArticleTag" >
+        <result column="id" property="id" />
+        <result column="article_id" property="article_id" />
+        <result column="tag" property="tag" />
+    </resultMap>
+
+    <insert id="insert" parameterType="ArticleTag" >
+        INSERT INTO blog_article_tag
+        (article_id, tag)
+        VALUES
+        (#{article_id}, #{tag})
+    </insert>
+
+    <delete id="delete" parameterType="Long" >
+        DELETE FROM blog_article_tag
+        WHERE article_id = #{article_id}
+    </delete>
+
+    <select id="get" parameterType="Long" resultMap="ArticleTagMap">
+        SELECT id, article_id, tag
+        FROM blog_article_tag
+        WHERE article_id = #{article_id}
+    </select>
+
+    <select id="getArticleId" parameterType="String" resultMap="ArticleTagMap">
+        SELECT id, article_id, tag
+        FROM blog_article_tag
+        WHERE tag = #{tag}
+    </select>
+
+</mapper>

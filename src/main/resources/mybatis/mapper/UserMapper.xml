@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.example.blogspringboot.mapper.UserMapper" >
+
+    <resultMap id="UserMap" type="User" >
+        <result column="id" property="id" />
+        <result column="username" property="username" />
+        <result column="password" property="password" />
+    </resultMap>
+
+    <sql id="BaseColumnList" >
+        id, username, password
+    </sql>
+
+    <sql id="BaseWhereList" >
+        <if test="username != null and username != ''" >
+            WHERE username = #{username}
+        </if>
+    </sql>
+
+    <select id="getUserByUsername" parameterType="String" resultMap="UserMap" >
+        SELECT
+        <include refid="BaseColumnList" />
+        FROM blog_user
+        <include refid="BaseWhereList" />
+    </select>
+
+</mapper>

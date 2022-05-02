@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/java?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8
+    username: java
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+
+mybatis:
+  config-location: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mybatis/mapper/*.xml
+  type-aliases-package: com.example.blogspringboot.model
